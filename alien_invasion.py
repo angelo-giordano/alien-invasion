@@ -9,6 +9,7 @@ from game_stats import GameStats
 import button
 from scoreboard import Scoreboard
 
+# Teste
 
 class AlienInvasion():
     '''Classe geral para gerir os componentes e o comportamento do jogo'''
