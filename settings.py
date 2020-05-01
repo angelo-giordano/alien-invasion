@@ -1,14 +1,15 @@
 class Settings():
-    '''Uma classe para armazenar todas as configurações do jogo Alien Invasion'''
+    '''Uma classe para armazenar todas
+    as configurações do jogo Alien Invasion'''
 
     def __init__(self):
         '''Inicializa as configurações estáticas do jogo'''
         # FPS do jogo
-        self.FPS = 60
+        self.fps = 60
 
         # Configurações da tela
-        self.WIDTH = 840
-        self.HEIGHT = 680
+        self.width = 840
+        self.height = 680
         self.bg_color = (135, 206, 235)
 
         # Configurações da nave
@@ -34,7 +35,8 @@ class Settings():
         self.alien_points = 50
         self.score_scale = 1.5
 
-        # fleet_direction de 1 é a direção que a frota está indo sendo 1 para a direita e -1 para a esquerda
+        # fleet_direction de 1 é a direção que a frota está indo,
+        # sendo 1 para a direita e -1 para a esquerda
         self.fleet_direction = 1
 
     def normal_mode_dynamic_settings(self):
@@ -47,7 +49,8 @@ class Settings():
         self.alien_points = 50
         self.score_scale = 3
 
-        # fleet_direction de 1 é a direção que a frota está indo sendo 1 para a direita e -1 para a esquerda
+        # fleet_direction de 1 é a direção que a frota está indo,
+        # sendo 1 para a direita e -1 para a esquerda
         self.fleet_direction = 1
 
     def hard_mode_dynamic_settings(self):
@@ -56,15 +59,17 @@ class Settings():
         self.spaceship_speed = 1.5
         self.bullet_speed = 2.0
         self.alien_speed = 2.0
-        print('Modo dificil')
+        print('Modo difícil')
         self.alien_points = 50
         self.score_scale = 1000
 
-        # fleet_direction de 1 é a direção que a frota está indo sendo 1 para a direita e -1 para a esquerda
+        # fleet_direction de 1 é a direção que a frota está indo,
+        # sendo 1 para a direita e -1 para a esquerda
         self.fleet_direction = 1
 
     def increase_speed(self):
-        '''Aumenta a velocidade de certos elementos do jogo e a pontuação que cada alien vale'''
+        '''Aumenta a velocidade de certos elementos do jogo
+        e a pontuação que cada alien vale'''
         self.spaceship_speed *= self.game_speedup
         self.alien_speed *= self.game_speedup
         self.bullet_speed *= self.game_speedup

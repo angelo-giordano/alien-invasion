@@ -1,5 +1,6 @@
 import json
 
+
 class GameStats():
     '''Estatísticas do Alien Invasion'''
 
@@ -12,7 +13,7 @@ class GameStats():
         try:
             with open('high_score.json') as json_file:
                 self.high_score = json.load(json_file)
-        except:
+        except FileNotFoundError:
             with open('high_score.json', 'w') as json_file:
                 json.dump(self.high_score, json_file)
 

@@ -1,11 +1,11 @@
+import json
 import pygame.font
 from pygame.sprite import Group
 from life import Life
-import json
 
 
 class Scoreboard():
-    '''Classe para mostrar a pontução do jogador'''
+    '''Classe para mostrar a pontuação do jogador'''
 
     def __init__(self, ai_game):
         '''Inicializa atributos da pontuação'''
@@ -21,7 +21,7 @@ class Scoreboard():
         self._score()
         self._high_score()
         self._wave()
-        self._lifes()
+        self._lives()
 
     def _score(self):
         '''Transforma a pontuação em uma imagem renderizada'''
@@ -57,21 +57,22 @@ class Scoreboard():
         self.wave_rect.right = self.score_rect.right
         self.wave_rect.top = self.score_rect.bottom + 5
 
-    def _lifes(self):
+    def _lives(self):
         '''Mostra quantas vidas restam'''
-        self.lifes = Group()
+        self.lives = Group()
         for life_number in range(self.game_stats.spaceship_lives):
             life = Life()
             life.rect.x = 10 + life_number * life.rect.width
             life.rect.y = self.screen_rect.top
-            self.lifes.add(life)
+            self.lives.add(life)
 
     def draw_score(self):
-        '''Desenha a pontuação, a rodada e o número de vidas restantes na tela'''
+        '''Desenha a pontuação, a rodada
+        e o número de vidas restantes na tela'''
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.wave_image, self.wave_rect)
-        self.lifes.draw(self.screen)
+        self.lives.draw(self.screen)
 
     def check_highscore(self):
         '''Verifica se tem uma nova pontuação mais alta'''

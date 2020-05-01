@@ -21,7 +21,7 @@ class AlienInvasion():
 
         # Carregando a janela do jogo
         self.screen = pygame.display.set_mode(
-            (self.settings.WIDTH, self.settings.HEIGHT))
+            (self.settings.width, self.settings.height))
 
         pygame.display.set_caption('Alien Invasion')
 
@@ -80,7 +80,7 @@ class AlienInvasion():
         self.game_stats.game_playing = True
         self.scoreboard._score()
         self.scoreboard._wave()
-        self.scoreboard._lifes()
+        self.scoreboard._lives()
 
         self.aliens.empty()
         self.bullets.empty()
@@ -97,7 +97,7 @@ class AlienInvasion():
         self.game_stats.game_playing = True
         self.scoreboard._score()
         self.scoreboard._wave()
-        self.scoreboard._lifes()
+        self.scoreboard._lives()
 
         self.aliens.empty()
         self.bullets.empty()
@@ -114,7 +114,7 @@ class AlienInvasion():
         self.game_stats.game_playing = True
         self.scoreboard._score()
         self.scoreboard._wave()
-        self.scoreboard._lifes()
+        self.scoreboard._lives()
 
         self.aliens.empty()
         self.bullets.empty()
@@ -139,13 +139,13 @@ class AlienInvasion():
         # Pega a largura e a altura de um alien
         alien_width, alien_height = alien.rect.size
         # Calcula o espaço horizontal vazio
-        space_x = self.settings.WIDTH - (2 * alien_width)
+        space_x = self.settings.width - (2 * alien_width)
         # Calcula quantos aliens cabem nesse espaço vazio
         number_aliens_x = space_x // (2 * alien_width)
 
         # Determina o número de linhas que cabem na tela
         spaceship_height = self.spaceship.rect.height
-        space_y = (self.settings.HEIGHT -
+        space_y = (self.settings.height -
                    (3 * alien_height) - spaceship_height)
         number_rows = space_y // (4 * alien_height)
 
@@ -162,12 +162,12 @@ class AlienInvasion():
         alien.x = alien_width + 2 * alien_width * alien_number
         # Define a posição do rect
         alien.rect.x = alien.x
-        alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
+        alien.rect.y = alien.rect.height + 2 * alien_height * row_number
         # Adiciona o novo alien para o grupo aliens
         self.aliens.add(alien)
 
     def _check_fleet_edges(self):
-        '''Responde de acordo se um alien enconstar no limite'''
+        '''Responde de acordo se um alien encostar no limite'''
         for alien in self.aliens.sprites():
             if alien.check_edges():
                 self._change_fleet_direction()
@@ -181,10 +181,10 @@ class AlienInvasion():
 
     def _spaceship_hit(self):
         '''Ação que ocorre quando a nave é acertada por um alien'''
-        # Duminui o número de vidas
+        # Diminui o número de vidas
         if self.game_stats.spaceship_lives > 0:
             self.game_stats.spaceship_lives -= 1
-            self.scoreboard._lifes()
+            self.scoreboard._lives()
 
             # Destrói os aliens e as balas restantes
             self.aliens.empty()
@@ -202,7 +202,8 @@ class AlienInvasion():
             pygame.mouse.set_visible(True)
 
     def _update_bullets(self):
-        '''Atualiza a posição das balas e exclui as que não aparecem mais na tela'''
+        '''Atualiza a posição das balas
+        e exclui as que não aparecem mais na tela'''
 
         # Atualiza a posição das balas
         self.bullets.update()
@@ -217,7 +218,8 @@ class AlienInvasion():
     def _check_bullet_alien_collisions(self):
         '''Colisão entre as balas e os aliens'''
 
-        # Checa por qualquer bala que acertou os aliens, e caso acerte exclui a bala e o alien
+        # Checa por qualquer bala que acertou os aliens,
+        # e caso acerte exclui a bala e o alien
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens,
                                                 True, True)
 
@@ -262,7 +264,8 @@ class AlienInvasion():
     def _check_aliens_in_bottom(self):
         '''Verifica se nenhum alien chegou na parte de baixo da tela'''
         screen_rect = self.screen.get_rect()
-        # Passa por cada alien no grupo de aliens verificando se encostou no limite de baixo da tela
+        # Passa por cada alien no grupo de aliens
+        # verificando se encostou no limite de baixo da tela
         for alien in self.aliens.sprites():
             if alien.rect.bottom >= screen_rect.bottom:
                 self._spaceship_hit()
@@ -274,7 +277,8 @@ class AlienInvasion():
         self._check_fleet_edges()
         self.aliens.update()
 
-        # Vê se um alien atingiu a nave, e caso atinja o número de vidas diminui em 1
+        # Vê se um alien atingiu a nave,
+        # e caso atinja o número de vidas diminui em 1
         if pygame.sprite.spritecollideany(self.spaceship, self.aliens):
             self._spaceship_hit()
 
@@ -283,7 +287,7 @@ class AlienInvasion():
     def run_game(self):
         '''Inicia o loop principal do jogo'''
         while True:
-            self.clock.tick(self.settings.FPS)
+            self.clock.tick(self.settings.fps)
             self._check_events()
             if self.game_stats.game_playing:
                 self.spaceship.update()
@@ -295,6 +299,6 @@ class AlienInvasion():
 
 if __name__ == "__main__":
     # Instância o jogo
-    alien_invasion = AlienInvasion()
+    ALIEN_INVASION = AlienInvasion()
     # Inicia o jogo
-    alien_invasion.run_game()
+    ALIEN_INVASION.run_game()

@@ -1,7 +1,9 @@
 import pygame
 
+
 class Life(pygame.sprite.Sprite):
     '''Cria a sprite das vidas'''
+
     def __init__(self):
         super().__init__()
         self.image = pygame.image.load('data\\images\\life.png')

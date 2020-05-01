@@ -1,5 +1,5 @@
-import pygame
 import sys
+import pygame
 
 
 class Spaceship():
@@ -38,7 +38,8 @@ class Spaceship():
         if keys[pygame.K_ESCAPE]:
             sys.exit()
 
-        # Atualiza o valor x da nave se o rect não ultrapassar o tamanho da tela
+        # Atualiza o valor x da nave se o rect
+        # não ultrapassar o tamanho da tela
         if keys[pygame.K_RIGHT] and self.rect.right < self.screen_rect.right:
             self.x += self.settings.spaceship_speed
         elif keys[pygame.K_LEFT] and self.rect.left > 0:
